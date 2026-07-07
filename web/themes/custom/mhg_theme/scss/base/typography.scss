@@ -1,0 +1,90 @@
+/**
+ * @file
+ * Typography styles for Velantis theme.
+ */
+
+body {
+  font-family: var(--vel-font-body);
+  font-weight: 500;
+  font-size: var(--vel-text-base);
+  line-height: var(--vel-leading-body);
+  color: var(--vel-text-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--vel-font-heading);
+  font-weight: 800;
+  color: var(--vel-primary);
+  margin-top: 0;
+}
+
+h1 {
+  font-size: var(--vel-text-4xl);
+  line-height: var(--vel-leading-heading-md);
+}
+
+h2 {
+  font-size: var(--vel-text-4xl);
+  line-height: var(--vel-leading-heading-md);
+}
+
+h3 {
+  font-size: var(--vel-text-2xl);
+  line-height: var(--vel-leading-loose);
+  font-weight: 700;
+}
+
+h4 {
+  font-size: var(--vel-text-xl);
+  line-height: var(--vel-leading-relaxed);
+  font-weight: 700;
+}
+
+p {
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-lg); /* 18px — mobile base */
+  font-weight: 500;
+  color: var(--vel-text-muted); /* #4A5565 — mobile */
+  line-height: var(--vel-leading-card-body); /* 26px — mobile */
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  p {
+    font-size: var(--vel-text-xl); /* 20px */
+    color: var(--vel-primary); /* #00466E — desktop */
+    line-height: var(--vel-leading-loose); /* 32.5px */
+  }
+}
+
+a {
+  color: var(--vel-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--vel-primary);
+}
+
+/* Mobile typography */
+@media (max-width: 991px) {
+  h1 {
+    font-size: var(--vel-text-2xl);
+    line-height: var(--vel-leading-card-title);
+  }
+
+  h2 {
+    font-size: var(--vel-text-3xl-plus);
+    line-height: var(--vel-leading-heading-sm);
+  }
+}

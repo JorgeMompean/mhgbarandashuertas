@@ -1,0 +1,295 @@
+@charset "UTF-8";
+/**
+ * @file
+ * Header styles — mobile-first.
+ * Figma: Desktop 26:2139 (97px), Mobile 26:5379 (65px).
+ */
+/* ==========================================================================
+   Mobile base (xs)
+   ========================================================================== */
+.vel-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--vel-bg-white);
+  border-bottom: 1px solid var(--vel-border);
+  height: 65px;
+  display: flex;
+  align-items: center;
+}
+
+.toolbar-fixed .vel-header {
+  top: 39px;
+  z-index: 101;
+}
+
+.vel-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--vel-max-width);
+  margin: 0 auto;
+  padding-inline: var(--vel-space-md); /* 16px */
+  height: 64px;
+}
+
+.vel-header__branding {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.vel-header__logo-velantis {
+  height: 19px;
+  width: auto;
+}
+
+.vel-header__logo-separator {
+  width: 1px;
+  height: 23px;
+  background: var(--vel-primary);
+}
+
+.vel-header__logo-ccn {
+  height: 23px;
+  width: auto;
+}
+
+/* Nav: hidden on mobile, fullscreen overlay when open */
+.vel-header__nav {
+  display: flex;
+  position: fixed;
+  top: 65px; /* Header height on mobile */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--vel-bg-white);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  padding: var(--vel-space-xl) var(--vel-space-md);
+  z-index: 99;
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: none; /* No transition by default to avoid flash on breakpoint change */
+}
+
+/* Only apply transition when menu has been interacted with */
+.vel-header__nav.is-open,
+.vel-header__nav.is-closing {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Adjust when Drupal admin toolbar is present (logged in users) */
+.toolbar-horizontal .vel-header__nav {
+  top: 104px; /* 65px header + 39px toolbar */
+}
+
+.toolbar-tray-open .vel-header__nav {
+  top: 144px; /* 65px header + 79px toolbar expanded */
+}
+
+/* Adjust for Gin admin theme with vertical toolbar */
+.toolbar-vertical .vel-header__nav {
+  top: 152px; /* 65px header + ~87px Gin header on mobile */
+}
+
+/* Adjust for is scrolled in mobile */
+.toolbar-vertical .vel-header.is-scrolled .vel-header__nav {
+  top: 104px; /* 104px header */
+}
+
+.vel-header__nav.is-open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.vel-header__nav-link {
+  font-family: var(--vel-font-body);
+  font-weight: 600;
+  font-size: var(--vel-text-lg);
+  color: var(--vel-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  width: 100%;
+  padding: var(--vel-space-md) 0;
+  border-bottom: 1px solid var(--vel-border);
+}
+
+.vel-header__nav-link:hover,
+.vel-header__nav-link:focus {
+  color: var(--vel-secondary);
+}
+
+.vel-header__nav-link.is-active {
+  position: relative;
+}
+
+.vel-header__nav-link.is-active::after {
+  content: "";
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--vel-accent);
+}
+
+/* Hide "Aprende jugando" link on mobile (< 992px) */
+.vel-header__nav-link[href="/aprende-jugando"] {
+  display: none;
+}
+
+/* Override Bootstrap Barrio menu defaults */
+.vel-header__nav .block-menu,
+.vel-header__nav .menu--main {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: none;
+  border: none;
+  width: 100%;
+}
+
+.vel-header__nav .block-menu .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+@media (min-width: 976px) {
+  .toolbar-fixed .vel-header {
+    top: 52px;
+  }
+}
+/* ==========================================================================
+   lg (992px) — Desktop header
+   ========================================================================== */
+@media (min-width: 992px) {
+  .vel-header {
+    height: 97px;
+    backdrop-filter: blur(4px);
+    box-shadow: var(--vel-shadow-sm);
+  }
+  .vel-header__inner {
+    padding-inline: 60px;
+    height: 96px;
+  }
+  .vel-header__logo-velantis {
+    height: 32px;
+  }
+  .vel-header__logo-separator {
+    width: 2px;
+    height: 38px;
+  }
+  .vel-header__logo-ccn {
+    height: 38px;
+  }
+  /* Nav: inline horizontal */
+  .vel-header__nav {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    padding: 0;
+    background: none;
+    transform: none;
+    transition: none;
+    opacity: 1;
+    width: 100%;
+  }
+  .vel-header__nav .block-menu,
+  .vel-header__nav .menu--main {
+    flex-direction: row;
+    gap: 48px;
+    width: auto;
+  }
+  .vel-header__nav-link {
+    width: auto;
+    padding: 0;
+    font-size: var(--vel-text-base);
+    border-bottom: none;
+    white-space: nowrap;
+  }
+  /* Show "Aprende jugando" on desktop (>= 992px) */
+  .vel-header__nav-link[href="/aprende-jugando"] {
+    display: inline;
+  }
+}
+/* ==========================================================================
+   xl (1200px)
+   ========================================================================== */
+@media (min-width: 1200px) {
+  .vel-header__inner {
+    padding-inline: var(--vel-content-padding); /* 80px */
+  }
+  .vel-header__logo-velantis {
+    height: 36px;
+  }
+  .vel-header__logo-separator {
+    height: 43px;
+  }
+  .vel-header__logo-ccn {
+    height: 43px;
+  }
+  .vel-header__nav .block-menu,
+  .vel-header__nav .menu--main {
+    gap: 64px;
+  }
+}
+/* ==========================================================================
+   Laptop tier (992px – 1599px)
+   ==========================================================================
+   Contracción de la cabecera para portátiles / desktop pequeño, alineada
+   con el header del Figma laptop: altura 64px, logos al ~⅔, fuente de
+   menú 13px, fondo translúcido y el menú en clúster pegado al logo (en
+   vez de centrado en la barra como en el tier desktop).
+   Sólo aplica dentro de la banda 1366–1599; en ≥1600px se mantiene
+   activo el tier 1200 (97px), y por debajo de 1366 no se altera nada.
+   --------------------------------------------------------------------------
+*/
+@media (min-width: 992px) and (max-width: 1599px) {
+  .vel-header {
+    height: 64px;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom-color: #f3f4f6;
+  }
+  /* Cluster-left: branding + nav pegados con gap 64px, sin space-between. */
+  .vel-header__inner {
+    height: 64px;
+    justify-content: flex-start;
+    gap: 64px;
+  }
+  .vel-header__logo-velantis {
+    height: 24px;
+  }
+  .vel-header__logo-separator {
+    height: 29px;
+  }
+  .vel-header__logo-ccn {
+    height: 29px;
+  }
+  /* El menú no se expande al 100% como en el tier desktop — clusterizado
+     justo después del logo. */
+  .vel-header__nav {
+    width: auto;
+    justify-content: flex-start;
+  }
+  .vel-header__nav-link {
+    font-size: 13px;
+    line-height: 24px;
+  }
+  .vel-header__nav-link.is-active::after {
+    height: 2px;
+  }
+}
+/*# sourceMappingURL=header.css.map */

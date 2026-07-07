@@ -1,0 +1,50 @@
+/**
+ * @file
+ * Hamburger menu toggle for mobile.
+ */
+
+.vel-hamburger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.vel-hamburger__line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--vel-primary);
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.vel-hamburger[aria-expanded="true"] .vel-hamburger__line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.vel-hamburger[aria-expanded="true"] .vel-hamburger__line:nth-child(2) {
+  opacity: 0;
+}
+
+.vel-hamburger[aria-expanded="true"] .vel-hamburger__line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.vel-hamburger:focus-visible {
+  outline: 2px solid var(--vel-accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 991px) {
+  .vel-hamburger {
+    display: flex;
+  }
+}

@@ -1,0 +1,236 @@
+/**
+ * @file
+ * Footer styles — mobile-first.
+ * Figma: Desktop 26:2140 (464px), Mobile 26:5629 (815px).
+ */
+
+/* ==========================================================================
+   Mobile base (xs)
+   ========================================================================== */
+
+.vel-footer {
+  background: var(--vel-primary);
+  color: var(--vel-bg-white);
+  padding: 32px 16px;
+}
+
+.vel-footer__col {
+  margin-bottom: var(--vel-space-md);
+}
+
+.vel-footer__col--institutional {
+  margin-bottom: 0;
+}
+
+.vel-footer a:hover,
+.vel-footer a:focus {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.vel-footer__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  max-width: var(--vel-max-width);
+  margin: 0 auto;
+}
+
+.vel-footer__logo {
+  height: 36px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  margin-bottom: var(--vel-space-lg);
+}
+
+.vel-footer__description {  
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-sm);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 22.75px;
+  margin-bottom: var(--vel-space-md);
+}
+
+.vel-footer__contact {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--vel-space-md);
+}
+
+.vel-footer__contact:last-child {
+  margin-bottom: 0;
+}
+
+.vel-footer__contact > * {
+  color: var(--vel-bg-white);
+}
+
+.vel-footer__contact-info {
+  font-size: var(--vel-text-sm);
+}
+
+.vel-footer__subheading {
+  margin-bottom: 0;
+  font-size: var(--vel-text-lg);
+}
+
+.vel-footer__heading {
+  font-family: var(--vel-font-heading);
+  font-size: var(--vel-text-2xl);
+  font-weight: 700;
+  line-height: var(--vel-leading-card-title);
+  color: var(--vel-bg-white);
+  margin-bottom: var(--vel-space-md);
+  position: relative;
+}
+
+.vel-footer__heading::after {
+  content: "";
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--vel-bg-white);
+}
+
+.vel-footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vel-space-sm);
+}
+
+.vel-footer__link {
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-base);
+  font-weight: 500;
+  color: var(--vel-bg-white);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  line-height: 22.75px;
+}
+
+.vel-footer__institutional {
+  display: flex;
+  align-items: center;
+  gap: var(--vel-space-md);
+}
+
+.vel-footer__logo-separator{
+  width: 1px;
+  height: 32px;
+  background: var(--vel-bg-white);
+}
+
+.vel-footer__institutional-logo {
+  height: auto;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.vel-footer__institutional-logo:last-child {
+  height: 19px;
+}
+
+.vel-footer__bottom {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--vel-bg-white);
+  padding-top: var(--vel-space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--vel-space-sm);
+}
+
+.vel-footer__copyright {
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-xs);
+  font-weight: 400;
+  color: var(--vel-bg-white);
+  line-height: var(--vel-leading-meta);
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.vel-footer__legal-links {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: var(--vel-space-md);
+}
+
+.vel-footer__legal-link {
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-xs);
+  font-weight: 400;
+  color: var(--vel-bg-white);
+  text-decoration: none;
+  line-height: var(--vel-leading-meta);
+}
+
+/* ==========================================================================
+   sm (576px)
+   ========================================================================== */
+
+@media (min-width: 576px) {
+  .vel-footer {
+    padding: 40px 24px;
+  }
+
+  .vel-footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* ==========================================================================
+   md (768px)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .vel-footer {
+    padding: 48px 40px;
+  }
+
+  .vel-footer__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+/* ==========================================================================
+   lg (992px) — Desktop: 3-col layout
+   ========================================================================== */
+
+@media (min-width: 992px) {
+  .vel-footer {
+    padding: 56px 60px;
+  }
+
+  .vel-footer__inner {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+/* ==========================================================================
+   xl (1200px)
+   ========================================================================== */
+
+@media (min-width: 1200px) {
+  .vel-footer {
+    padding: 64px 80px;
+  }
+}
+
+/* ==========================================================================
+   xxl (1600px)
+   ========================================================================== */
+@media (min-width: 1600px) {
+  .vel-footer__description {
+    max-width: 50%;
+  }
+}

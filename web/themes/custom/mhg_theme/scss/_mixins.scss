@@ -1,0 +1,248 @@
+// ==========================================================================
+// Velantis Theme — SCSS Mixins
+// ==========================================================================
+
+@use 'variables' as *;
+
+// Responsive breakpoint (mobile-first, min-width)
+// Usage: @include bp(lg) { ... }
+@mixin bp($name) {
+  @if $name == 'sm'  { @media (min-width: $bp-sm)  { @content; } }
+  @else if $name == 'md'  { @media (min-width: $bp-md)  { @content; } }
+  @else if $name == 'lg'  { @media (min-width: $bp-lg)  { @content; } }
+  @else if $name == 'xl'  { @media (min-width: $bp-xl)  { @content; } }
+  @else if $name == 'xxl' { @media (min-width: $bp-xxl) { @content; } }
+}
+
+// Visually hidden (accessible)
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Truncate text with ellipsis
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Focus visible outline (a11y)
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 2px solid var(--vel-accent);
+    outline-offset: 2px;
+  }
+}
+
+// ==========================================================================
+// Typography mixins — Figma-verified patterns
+// ==========================================================================
+
+// Section title (h2) — mobile-first base
+// Figma: Funnel Display ExtraBold, 36px mobile → 48px sm → 72px lg → 80px xxl
+// Used by: sections.scss (5×), about-section, contact-cau, views
+@mixin heading-section {
+  font-family: var(--vel-font-heading);
+  font-size: var(--vel-text-3xl-plus); // 36px
+  font-weight: 800;
+  color: var(--vel-primary);
+  line-height: var(--vel-leading-heading-sm); // 36px
+  letter-spacing: var(--vel-tracking-snug); // -0.75px
+  margin: 0;
+  max-width: 279px; // Figma mobile: forces 2-line wrap on section titles
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+// Section title responsive scale (sm → lg → xxl)
+// Include AFTER heading-section inside @include bp() blocks
+@mixin heading-section-sm {
+  font-size: var(--vel-text-4xl); // 48px
+  line-height: var(--vel-leading-heading-md); // 48.75px
+}
+
+@mixin heading-section-lg {
+  font-size: var(--vel-text-5xl); // 72px
+  line-height: var(--vel-leading-heading-lg); // 72px
+  letter-spacing: var(--vel-tracking-tight); // -1.8px
+  max-width: none; // Desktop: single line, no width restriction
+}
+
+@mixin heading-section-xxl {
+  font-size: var(--vel-text-6xl); // 80px
+  line-height: var(--vel-leading-heading-xl); // 80px
+}
+
+// Decorative cyan line after section titles — mobile-first.
+// IN-FLOW (refactor #113): the line is a block ::after that takes physical space,
+// NOT position:absolute. Spacing is natural and predictable:
+//   título → (margin-top línea) → línea → (margin-bottom título) → siguiente.
+// Figma: línea 75px; alto 5px mobile → 10px desktop.
+// gap título→línea: 24px mobile → 32px desktop (margin-top de la línea).
+@mixin title-decoration-line {
+  content: '';
+  display: block;
+  width: 75px;
+  height: 5px; // Mobile
+  margin-top: var(--vel-space-lg); // 24px — gap título→línea (mobile)
+  background: var(--vel-accent);
+}
+
+// Desktop overrides for the decoration line (use inside @media lg+)
+@mixin title-decoration-line-desktop {
+  height: 10px; // Desktop
+  margin-top: var(--vel-space-xl); // 32px — gap título→línea (desktop)
+}
+
+// Apply to the title element that uses the decoration line — mobile-first.
+// margin-bottom: 0 por defecto. Como la línea ya ocupa espacio (en flujo), el
+// gap línea→siguiente lo aporta el LAYOUT de cada sección:
+//   - contenedores con gap (flex/grid): el propio gap → no hace falta margen.
+//   - flujo normal o gap:0: la sección añade margin-bottom explícito (= gap Figma).
+@mixin title-with-decoration {
+  margin: 0;
+}
+
+// Desktop overrides for the title with decoration (use inside @media lg+)
+// Sin margen por defecto; la sección lo define según su layout.
+@mixin title-with-decoration-desktop {
+  margin: 0;
+}
+
+// Body text — mobile-first
+// Figma: Urbanist Medium 500, 18px/26px mobile → 20px/29.25px or 32.5px desktop
+// $color default: --vel-text-muted (#4A5565) or --vel-primary (#00466E)
+@mixin body-text($color: var(--vel-text-muted)) {
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-lg); // 18px
+  font-weight: 500;
+  color: $color;
+  line-height: var(--vel-leading-card-body); // 26px
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+// Body text desktop scale
+@mixin body-text-desktop {
+  font-size: var(--vel-text-xl); // 20px
+  line-height: var(--vel-leading-loose); // 32.5px
+}
+
+// Card title — used in news-card, resource-card, cyber-card, objective-card
+// Figma: Funnel Display Bold, 24px/32px
+@mixin card-title($color: var(--vel-primary)) {
+  font-family: var(--vel-font-heading);
+  font-size: var(--vel-text-2xl); // 24px
+  font-weight: 700;
+  color: $color;
+  line-height: var(--vel-leading-card-title); // 32px
+}
+
+// Card body text — 16px variant used inside cards
+// Figma: Urbanist Medium 500, 16px/24px or 16px/26px
+@mixin card-body-text($color: var(--vel-primary)) {
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-base); // 16px
+  font-weight: 500;
+  color: $color;
+  line-height: var(--vel-leading-snug); // 24px
+}
+
+// Metadata text — dates, reading time, stats labels
+// Figma: Urbanist Bold, 12px/16px
+@mixin meta-text($color: var(--vel-bg-white)) {
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-xs); // 12px
+  font-weight: 700;
+  color: $color;
+  line-height: var(--vel-leading-meta); // 16px
+}
+
+// ==========================================================================
+// Button mixins
+// ==========================================================================
+
+// Primary CTA button — mobile base
+// Figma: 50px height, 24px px, 12px radius, Urbanist Bold 16px, bg accent
+@mixin btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--vel-space-sm);
+  width: fit-content; // Never stretch to parent width
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-base); // 16px
+  font-weight: 700;
+  color: var(--vel-primary);
+  background: var(--vel-accent);
+  padding: 0 24px;
+  height: 50px;
+  border-radius: var(--vel-btn-radius-mobile); // 12px
+  text-decoration: none;
+  box-shadow: var(--vel-shadow-blue-mobile);
+  transition: transform 0.2s ease;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-2px);
+    color: var(--vel-primary);
+  }
+}
+
+// Primary CTA desktop overrides
+// Figma: 16px 32px padding, auto height, 16px radius, 18px font
+@mixin btn-primary-desktop {
+  padding: 16px 32px;
+  height: auto;
+  border-radius: var(--vel-card-radius); // 16px
+  font-size: var(--vel-text-lg); // 18px
+  box-shadow: var(--vel-shadow-blue);
+}
+
+// Secondary/outline button — mobile base
+@mixin btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vel-space-sm);
+  width: fit-content; // Never stretch to parent width
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-base);
+  font-weight: 700;
+  color: var(--vel-primary);
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid var(--vel-primary);
+  padding: 0 24px;
+  height: 50px;
+  border-radius: var(--vel-btn-radius-mobile);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+// ==========================================================================
+// Card mixins
+// ==========================================================================
+
+// Card base — border + radius + shadow + subtle gradient background
+// Figma: 1px border #E4E4E4, 24px radius mobile, sm shadow, gradient bg
+@mixin card-base {
+  border: 1px solid var(--vel-border);
+  border-radius: var(--vel-card-radius-mobile); // 24px
+  box-shadow: var(--vel-shadow-sm);
+  background: var(--vel-gradient-card-subtle), var(--vel-bg-white);
+}

@@ -1,0 +1,56 @@
+/**
+ * @file
+ * Back to top button styles.
+ * Visible on all resolutions. Fixed to bottom-right of viewport.
+ */
+.vel-back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 0;
+  background-color: var(--vel-bg-white);
+  border: 1px solid var(--vel-border);
+  border-radius: var(--vel-card-radius) 0 0 var(--vel-card-radius);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  /* Visible state */
+}
+.vel-back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.vel-back-to-top {
+  /* Hover state */
+}
+.vel-back-to-top:hover, .vel-back-to-top:focus-visible {
+  background-color: var(--vel-accent);
+  border-color: var(--vel-accent);
+  color: var(--vel-bg-white);
+}
+.vel-back-to-top {
+  /* Focus styles for accessibility */
+}
+.vel-back-to-top:focus-visible {
+  outline: 2px solid var(--vel-accent);
+  outline-offset: 2px;
+}
+.vel-back-to-top svg {
+  transition: transform 0.2s ease;
+}
+.vel-back-to-top:hover svg, .vel-back-to-top:focus-visible svg {
+  transform: translateY(-2px);
+}
+.vel-back-to-top:hover svg path, .vel-back-to-top:focus-visible svg path {
+  stroke: var(--vel-bg-white);
+}
+/*# sourceMappingURL=back-to-top.css.map */

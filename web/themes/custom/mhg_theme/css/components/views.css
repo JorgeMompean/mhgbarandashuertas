@@ -1,0 +1,703 @@
+@charset "UTF-8";
+/**
+ * @file
+ * Styles for Noticias and Videoguías listing pages.
+ *
+ * Mobile-first approach per responsive-mobile-spec.md §9.
+ * Shared class: .vel-listing-page (hero, filters, featured, grid, pager).
+ * Figma refs: Noticias 26:2344/26:6613, Videoguías 26:2549/26:6302.
+ *
+ * Structure (HTML order):
+ *   1. Hero (hero-bg, hero-gradient, hero-content, title, subtitle)
+ *   2. Filters (filters--original, pills, filter-pill)
+ *   3. Featured (news-featured subcomponents)
+ *   4. Grid Section (filters--reordered, grid-header, grid-title, grid-underline, grid, grid-item)
+ *   5. Pager
+ *
+ * Breakpoints (min-width):
+ *   xs: 0-575px (base styles)
+ *   sm: 576px
+ *   md: 768px
+ *   lg: 992px
+ *   xl: 1200px
+ */
+/* ==========================================================================
+   1. Hero Section — Mobile base (xs)
+   ========================================================================== */
+.vel-listing-page__hero {
+  position: relative;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  background: var(--vel-primary);
+}
+
+.vel-listing-page__hero-bg {
+  position: absolute;
+  inset: 0;
+  background-color: var(--vel-primary);
+  background-image: url("../../assets/images/velantis-logo-variant.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: 0;
+  opacity: 0.2;
+}
+
+.vel-listing-page__hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: var(--vel-gradient-hero);
+  z-index: 1;
+}
+
+.vel-listing-page__hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  max-width: var(--vel-max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: 32px 16px;
+}
+
+.vel-listing-page__title {
+  font-family: var(--vel-font-heading);
+  font-size: var(--vel-text-3xl-plus);
+  font-weight: 800;
+  color: var(--vel-bg-white);
+  line-height: var(--vel-leading-heading-sm);
+  letter-spacing: var(--vel-tracking-snug);
+  margin: 0 0 var(--vel-space-md);
+}
+
+.vel-listing-page__subtitle {
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-base);
+  font-weight: 400;
+  color: var(--vel-bg-white);
+  line-height: var(--vel-leading-snug);
+  margin: 0;
+  opacity: 0.9;
+  max-width: 771px;
+}
+
+/* sm (576px) — Hero */
+@media (min-width: 576px) {
+  .vel-listing-page__hero {
+    min-height: 356px;
+  }
+  .vel-listing-page__hero-content {
+    padding: 32px 24px;
+  }
+  .vel-listing-page__title {
+    font-size: var(--vel-text-4xl);
+    line-height: var(--vel-leading-heading-md);
+  }
+  .vel-listing-page__subtitle {
+    font-size: var(--vel-text-lg);
+    line-height: var(--vel-leading-relaxed);
+  }
+}
+/* lg (992px) — Hero */
+@media (min-width: 992px) {
+  .vel-listing-page__hero-content {
+    padding: 48px 60px;
+  }
+  .vel-listing-page__title {
+    font-size: var(--vel-text-5xl);
+    font-weight: 700;
+    line-height: var(--vel-leading-heading-lg);
+    letter-spacing: var(--vel-tracking-tight);
+    margin-bottom: var(--vel-space-lg);
+  }
+  .vel-listing-page__subtitle {
+    font-size: var(--vel-text-xl);
+    line-height: var(--vel-leading-relaxed);
+  }
+}
+/* xl (1200px) — Hero */
+@media (min-width: 1200px) {
+  .vel-listing-page__hero-content {
+    padding: 48px 80px;
+  }
+}
+/* ==========================================================================
+   2. Filters Section — Mobile base (xs)
+   Desktop: between hero and featured (--original)
+   Mobile: inside grid-section after title (--reordered)
+   ========================================================================== */
+.vel-listing-page__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vel-space-sm);
+  padding: 24px 16px;
+  background: rgba(228, 228, 228, 0.4);
+}
+
+/* Mobile: hide original (between hero/featured), show reordered (in grid) */
+.vel-listing-page__filters--original {
+  display: none;
+}
+
+.vel-listing-page__filters--reordered {
+  display: flex;
+  order: 2; /* After grid-header (order: 1), before grid (order: 3) */
+  margin-bottom: var(--vel-space-xl);
+  /* Full-width in mobile by breaking out of parent padding */
+  margin-left: -16px;
+  margin-right: -16px;
+  width: calc(100% + 32px);
+}
+
+.vel-listing-page__filters-label {
+  display: none;
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-sm);
+  font-weight: 600;
+  color: var(--vel-text-dark);
+  white-space: nowrap;
+}
+
+.vel-listing-page__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  max-width: var(--vel-max-width);
+  margin: 0 auto;
+  padding: 0;
+}
+
+.vel-filter-pill {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: var(--vel-pill-radius);
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-sm);
+  font-weight: 600;
+  color: var(--vel-text-muted);
+  background: var(--vel-bg-white);
+  border: 1px solid var(--vel-border);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.vel-filter-pill:hover {
+  color: var(--vel-secondary);
+  border-color: var(--vel-secondary);
+}
+
+.vel-filter-pill--active {
+  color: var(--vel-bg-white);
+  background: var(--vel-secondary);
+  border-color: var(--vel-secondary);
+}
+
+.vel-filter-pill--active:hover {
+  color: var(--vel-secondary);
+  background: var(--vel-bg-white);
+  border-color: var(--vel-secondary);
+}
+
+/* Select fallback (when pills are not available) */
+.vel-listing-page__filters select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: var(--vel-space-sm) var(--vel-space-xl) var(--vel-space-sm) var(--vel-space-lg);
+  border-radius: var(--vel-pill-radius);
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-sm);
+  font-weight: 600;
+  color: var(--vel-text-muted);
+  background: var(--vel-bg-white);
+  border: 1px solid var(--vel-border);
+  cursor: pointer;
+}
+
+.vel-listing-page__filters .form-item {
+  margin: 0;
+}
+
+.vel-listing-page__filters .form-actions {
+  display: none;
+}
+
+/* sm (576px) — Filters */
+@media (min-width: 576px) {
+  .vel-listing-page__filters--reordered {
+    margin-bottom: var(--vel-space-2xl);
+    /* Adjust for parent padding at 576px */
+    margin-left: -24px;
+    margin-right: -24px;
+    width: calc(100% + 48px);
+  }
+}
+/* md (768px) — Filters */
+@media (min-width: 768px) {
+  .vel-listing-page__filters--reordered {
+    /* Adjust for parent padding at 768px */
+    margin-left: -40px;
+    margin-right: -40px;
+    width: calc(100% + 80px);
+  }
+  .vel-listing-page__filters {
+    padding: 24px 40px;
+  }
+}
+/* lg (992px) — Filters */
+@media (min-width: 992px) {
+  /* Desktop: show original filters (between hero/featured), hide reordered (in grid) */
+  .vel-listing-page__filters--original {
+    display: flex;
+  }
+  .vel-listing-page__filters--reordered {
+    display: none;
+  }
+  .vel-listing-page__filters {
+    flex-wrap: nowrap;
+    gap: var(--vel-space-md);
+    padding: var(--vel-space-xl) 60px;
+  }
+  .vel-listing-page__filters-label {
+    display: block;
+  }
+  .vel-listing-page__pills {
+    padding: var(--vel-space-xl) 0;
+  }
+}
+/* xl (1200px) — Filters */
+@media (min-width: 1200px) {
+  .vel-listing-page__filters {
+    padding: var(--vel-space-xl) 80px;
+  }
+}
+/* xxl (1920px) — Desktop */
+@media (min-width: 1920px) {
+  .vel-listing-page__filters {
+    padding: var(--vel-space-xl) 0;
+  }
+  .vel-listing-page__pills {
+    padding: var(--vel-space-xl) 80px;
+  }
+}
+/* ==========================================================================
+   3. Featured Section — Mobile base (xs)
+   First news item rendered with news-card-featured SDC
+   ========================================================================== */
+.vel-listing-page__featured {
+  display: none;
+  padding: 0 0 32px 0;
+  max-width: var(--vel-max-width);
+  margin: 0 auto;
+}
+
+/* Noticias: featured always visible (mobile + desktop) */
+.vel-noticias-page .vel-listing-page__featured {
+  display: block;
+}
+
+/* Noticias: hide first grid item always (duplicated in featured) */
+.vel-noticias-page .vel-listing-page__grid-item:first-child {
+  display: none;
+}
+
+.vel-news-featured__image-wrapper,
+.vel-video-featured__image-wrapper {
+  border-radius: 0;
+}
+
+.vel-news-featured__content,
+.vel-video-featured__content {
+  padding: 0 16px;
+}
+
+/* sm (576px) — Featured */
+@media (min-width: 576px) {
+  .vel-listing-page__featured {
+    padding: 0 0 48px 0;
+  }
+  .vel-news-featured__content,
+  .vel-video-featured__content {
+    padding: 0 24px;
+  }
+}
+/* md (768px) — Featured */
+@media (min-width: 768px) {
+  .vel-listing-page__featured {
+    padding: 0 0 64px 0;
+  }
+  .vel-news-featured__content,
+  .vel-video-featured__content {
+    padding: 0 40px;
+  }
+}
+/* lg (992px) — Featured */
+@media (min-width: 992px) {
+  .vel-listing-page__featured {
+    display: block;
+    padding: 80px 60px 80px;
+  }
+  .vel-news-featured__image-wrapper,
+  .vel-video-featured__image-wrapper {
+    border-radius: var(--vel-card-radius-mobile);
+  }
+  .vel-news-featured__content,
+  .vel-video-featured__content {
+    padding: 0;
+  }
+  /* Videoguías: hide first grid item only in desktop (featured hidden in mobile) */
+  .vel-videoguias-page .vel-listing-page__grid-item:first-child {
+    display: none;
+  }
+}
+/* xl (1200px) — Featured */
+@media (min-width: 1200px) {
+  .vel-listing-page__featured {
+    padding: var(--vel-section-padding) var(--vel-content-padding) var(--vel-section-padding);
+  }
+}
+/* ==========================================================================
+   4. Grid Section — Mobile base (xs)
+   Contains: filters--reordered, grid-header, grid
+   ========================================================================== */
+.vel-listing-page__grid-section {
+  padding: 0 16px 32px;
+  max-width: var(--vel-max-width);
+  margin: 0 auto;
+  /* Flexbox to control filter positioning with order */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 4.1 Grid Header */
+.vel-listing-page__grid-header {
+  order: 1; /* In mobile: filters (order: 2) come after this header */
+  margin: var(--vel-space-xl) 0;
+}
+
+.vel-listing-page__grid-header {
+  display: none;
+}
+
+.vel-listing-page__grid-title {
+  font-family: var(--vel-font-heading);
+  font-size: var(--vel-text-2xl);
+  font-weight: 800;
+  color: var(--vel-text-dark);
+  line-height: var(--vel-leading-loose);
+  margin: 0 0 var(--vel-space-md);
+}
+
+.vel-listing-page__grid-underline {
+  width: 75px;
+  height: 5px;
+  background-color: var(--vel-accent);
+  border-radius: 2px;
+}
+
+/* 4.2 Grid Container */
+.vel-listing-page__grid {
+  order: 3; /* Always last (after header and filters) */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.vel-listing-page__grid-item {
+  display: flex;
+}
+
+/* Ensure cards fill their grid cell */
+.vel-listing-page__grid-item > * {
+  width: 100%;
+}
+
+/* 4.3 News Card Overrides (specific to listing context) */
+.vel-news-card, .vel-video-card {
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1019607843), 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  backdrop-filter: blur(20px);
+}
+
+.vel-news-card__image {
+  filter: none;
+}
+
+.vel-news-card__gradient {
+  filter: blur(10px);
+}
+
+.vel-news-card__overlay-content::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(to top, black, transparent);
+  mask-image: linear-gradient(to top, black, transparent);
+  z-index: 2;
+}
+
+.vel-news-card__badge {
+  color: var(--vel-accent);
+  background: var(--vel-bg-white);
+  font-weight: 700;
+  font-size: var(--vel-text-sm);
+  padding: 5px 12px;
+  z-index: 3;
+}
+
+.vel-news-card__title,
+.vel-news-card__excerpt,
+.vel-news-card__meta {
+  z-index: 3;
+}
+
+/* sm (576px) — Grid Section */
+@media (min-width: 576px) {
+  .vel-listing-page__grid-section {
+    padding: 0 24px 48px;
+  }
+  .vel-listing-page__grid-header {
+    margin-bottom: var(--vel-space-2xl);
+  }
+  .vel-listing-page__grid-title {
+    font-size: var(--vel-text-3xl-plus);
+    line-height: var(--vel-leading-heading-sm);
+  }
+}
+/* md (768px) — Grid Section: 2 cols transition */
+@media (min-width: 768px) {
+  .vel-listing-page__grid-section {
+    padding: 0 40px 48px;
+  }
+  .vel-listing-page__grid--3col,
+  .vel-listing-page__grid--4col {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .vel-listing-page__grid-title {
+    font-size: var(--vel-text-4xl);
+    line-height: var(--vel-leading-heading-md);
+  }
+}
+/* lg (992px) — Grid Section: 3 cols for news */
+@media (min-width: 992px) {
+  .vel-listing-page__grid-section {
+    padding: 80px 60px 80px;
+  }
+  .vel-listing-page__grid--3col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .vel-listing-page__grid--4col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .vel-listing-page__grid-header {
+    display: initial;
+    margin-bottom: 64px;
+  }
+  .vel-listing-page__grid-title {
+    font-size: var(--vel-text-5xl);
+    line-height: var(--vel-leading-heading-lg);
+    letter-spacing: var(--vel-tracking-tight);
+  }
+  .vel-listing-page__grid-underline {
+    height: 10px;
+  }
+}
+/* xl (1200px) — Grid Section: section padding only.
+   --4col mantiene 3 columnas en la banda laptop (992–1599); pasa a 4
+   solo en xxl ≥1600 para coincidir con Figma desktop. */
+@media (min-width: 1200px) {
+  .vel-listing-page__grid-section {
+    padding: var(--vel-section-padding) var(--vel-content-padding) var(--vel-section-padding);
+  }
+  .vel-listing-page__grid-title {
+    font-size: var(--vel-text-6xl);
+    letter-spacing: var(--vel-tracking-tight);
+  }
+}
+/* xxl (1600px) — Grid Section: 4 columns para videoguías Desktop. */
+@media (min-width: 1600px) {
+  .vel-listing-page__grid--4col {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+/* Laptop tier (1366–1599) — Figma laptop /videoguias H2 #00466E (primary).
+   La base usa var(--vel-text-dark) (black) — Figma laptop pide primary. */
+@media (min-width: 992px) and (max-width: 1599px) {
+  .vel-listing-page__grid-title {
+    color: var(--vel-primary);
+  }
+  /* Figma laptop: el grid "Todas las noticias/videoguías" se acerca a la
+     card destacada — 39px arriba / 67px abajo (vs 96px del breakpoint xl). */
+  .vel-listing-page__grid-section {
+    padding-top: 39px;
+    padding-bottom: 67px;
+  }
+}
+/* ==========================================================================
+   5. Pager — Mobile base (xs)
+   ========================================================================== */
+.vel-listing-page__pager {
+  display: flex;
+  justify-content: center;
+  padding: var(--vel-space-xl) 16px var(--vel-space-2xl);
+}
+
+.vel-listing-page__pager .pager {
+  display: flex;
+  gap: var(--vel-space-sm);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vel-listing-page__pager .pager__item a,
+.vel-listing-page__pager .pager__item span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: var(--vel-space-xs) var(--vel-space-sm);
+  border-radius: var(--vel-border-radius);
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-sm);
+  font-weight: 600;
+  color: var(--vel-text-muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.vel-listing-page__pager .pager__item a:hover {
+  color: var(--vel-primary);
+  background-color: var(--vel-primary-10);
+}
+
+.vel-listing-page__pager .pager__item--active a,
+.vel-listing-page__pager .pager__item--active span,
+.vel-listing-page__pager .pager__item.is-active a {
+  color: var(--vel-bg-white);
+  background-color: var(--vel-primary);
+}
+
+.vel-listing-page__pager .pager__item--previous a,
+.vel-listing-page__pager .pager__item--next a {
+  font-weight: 700;
+}
+
+/* sm (576px) — Pager */
+@media (min-width: 576px) {
+  .vel-listing-page__pager {
+    padding: var(--vel-space-2xl) 24px var(--vel-space-3xl);
+  }
+}
+/* md (768px) — Pager */
+@media (min-width: 768px) {
+  .vel-listing-page__pager {
+    padding: var(--vel-space-2xl) 40px var(--vel-space-3xl);
+  }
+}
+/* lg (992px) — Pager */
+@media (min-width: 992px) {
+  .vel-listing-page__pager {
+    padding: var(--vel-space-3xl) 60px 80px;
+  }
+}
+/* xl (1200px) — Pager */
+@media (min-width: 1200px) {
+  .vel-listing-page__pager {
+    padding: var(--vel-space-3xl) var(--vel-content-padding) var(--vel-section-padding);
+  }
+}
+/* ==========================================================================
+   6. Videoguías block — Mobile base (xs)
+   ========================================================================== */
+.vel-video-block-section {
+  background: rgba(var(--vel-bg-light-rgb), 0.2);
+}
+
+.vel-video-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.vel-video-block .vel-listing-page__grid-header {
+  display: initial;
+  margin: 0 0 var(--vel-space-xl);
+  order: initial;
+}
+
+.vel-video-block__grid {
+  margin-bottom: var(--vel-space-xl);
+}
+
+.vel-video-block .vel-listing-page__grid-title {
+  font-size: var(--vel-text-3xl-plus);
+  color: var(--vel-primary);
+}
+
+.vel-video-block__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--vel-space-sm);
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-base); /* 16px */
+  font-weight: 700;
+  color: var(--vel-primary);
+  background: var(--vel-accent);
+  padding: 0 24px;
+  height: 50px;
+  border-radius: var(--vel-btn-radius-mobile); /* 12px */
+  text-decoration: none;
+  box-shadow: var(--vel-shadow-blue-mobile);
+  transition: transform 0.2s ease;
+  white-space: nowrap;
+  width: 100%;
+  max-width: 261px;
+}
+
+.vel-video-block__cta:hover,
+.vel-video-block__cta:focus {
+  transform: translateY(-2px);
+  color: var(--vel-primary);
+}
+
+@media (min-width: 576px) {
+  .vel-video-block .vel-listing-page__grid-title {
+    font-size: var(--vel-text-4xl);
+  }
+}
+/* lg (992px) */
+@media (min-width: 992px) {
+  .vel-video-block .vel-listing-page__grid-header,
+  .vel-video-block__grid {
+    margin-bottom: 64px;
+  }
+  .vel-video-block .vel-listing-page__grid-title {
+    font-size: var(--vel-text-6xl);
+  }
+}
+/* ==========================================================================
+   laptop (1366-1599px) — QA: alturas/paddings de hero de listado y sección
+   de videotutoriales conforme a Figma laptop.
+   ========================================================================== */
+@media (min-width: 992px) and (max-width: 1599px) {
+  .vel-listing-page__hero {
+    height: auto;
+    min-height: 254px; /* Figma laptop (vs 356 desktop) */
+  }
+  .vel-video-block-section {
+    padding-block: var(--vel-space-3xl); /* 64px (vs 96 desktop) */
+  }
+}
+/*# sourceMappingURL=views.css.map */

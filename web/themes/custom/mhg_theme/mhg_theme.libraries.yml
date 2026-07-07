@@ -1,0 +1,14 @@
+global:
+  css:
+    base:
+      css/base/reset.css: {}
+      css/base/tokens.css: {}
+      css/base/typography.css: {}
+      css/base/layout.css: {}
+    component:
+      css/components/header.css: {}
+      css/components/back-to-top.css: {}
+      css/components/footer.css: {}
+      css/components/hamburger.css: {}
+      css/components/sections.css: {}
+      css/components/breadcrumb.css: {}

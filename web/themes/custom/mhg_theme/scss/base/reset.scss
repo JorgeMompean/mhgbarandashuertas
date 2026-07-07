@@ -1,0 +1,64 @@
+/**
+ * @file
+ * Minimal resets on top of Bootstrap Barrio defaults.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+}
+
+nav.tabs li {
+  list-style: none;  
+}
+
+/* Remove Bootstrap container max-width constraints */
+.container,
+.container-fluid {
+  max-width: 100%;
+  padding: 0;
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--vel-accent);
+  outline-offset: 2px;
+}
+
+/* Skip navigation link */
+.vel-skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10000;
+  padding: 12px 24px;
+  background: var(--vel-primary);
+  color: var(--vel-bg-white);
+  font-family: var(--vel-font-body);
+  font-weight: 700;
+  border-radius: var(--vel-border-radius);
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.vel-skip-link:focus {
+  top: 16px;
+}

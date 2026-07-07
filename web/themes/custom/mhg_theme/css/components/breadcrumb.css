@@ -1,0 +1,65 @@
+/**
+ * @file
+ * Breadcrumb styles for easy_breadcrumb override.
+ */
+.vel-breadcrumb {
+  padding: var(--vel-space-lg) var(--vel-content-padding);
+  margin: 0 auto;
+  background-color: var(--vel-bg-light);
+}
+
+.vel-breadcrumb__list {
+  max-width: var(--vel-max-width-content);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vel-space-xs);
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.vel-breadcrumb__item {
+  display: flex;
+  align-items: center;
+  gap: var(--vel-space-xs);
+}
+
+.vel-breadcrumb__link {
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-sm);
+  font-weight: 500;
+  color: var(--vel-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.vel-breadcrumb__link:hover {
+  color: var(--vel-secondary);
+  text-decoration: underline;
+}
+
+.vel-breadcrumb__text {
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-sm);
+  font-weight: 500;
+  color: var(--vel-primary);
+}
+
+.vel-breadcrumb__sep {
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-sm);
+  color: var(--vel-primary);
+}
+
+.vel-breadcrumb__item--active .vel-breadcrumb__text {
+  font-weight: 700;
+}
+
+/* Hidden on mobile */
+@media (max-width: 991px) {
+  .vel-breadcrumb {
+    display: none;
+  }
+}
+/*# sourceMappingURL=breadcrumb.css.map */

@@ -1,0 +1,1141 @@
+/**
+ * @file
+ * Section wrapper styles — mobile-first.
+ * Controls: Stepper, Cyber section, Resources section, News Home section.
+ * Content must NEVER be clipped at any viewport width.
+ */
+
+@use 'mixins' as *;
+
+/* ==========================================================================
+   Shared section title pattern — Mobile base (xs)
+   ========================================================================== */
+
+.vel-section-title {
+  @include heading-section;
+  @include title-with-decoration;
+}
+
+.vel-section-title::after {
+  @include title-decoration-line;
+}
+
+@media (min-width: 992px) {
+  .vel-section-title {
+    @include title-with-decoration-desktop;
+  }
+
+  .vel-section-title::after {
+    @include title-decoration-line-desktop;
+  }
+}
+
+/* ==========================================================================
+   Shared section header — used by Objectives, Guide Steps, etc.
+   ========================================================================== */
+
+.vel-section-header {
+  margin-bottom: var(--vel-space-xl);
+}
+
+.vel-section-header__title {
+  @include heading-section;
+}
+
+.vel-section-header__line {
+  width: 75px;
+  height: 5px;
+  background: var(--vel-accent);
+  margin-top: var(--vel-space-lg);
+}
+
+@media (min-width: 576px) {
+  .vel-section-header__title {
+    @include heading-section-sm;
+  }
+}
+
+@media (min-width: 992px) {
+  .vel-section-header {
+    margin-bottom: 64px; /* Figma: 64px gap between title block and body */
+  }
+
+  .vel-section-header__title {
+    @include heading-section-lg;
+  }
+
+  .vel-section-header__line {
+    height: 10px;
+    margin-top: var(--vel-space-xl); /* 32px — gap título→línea (desktop, Figma) */
+  }
+}
+
+@media (min-width: 1600px) {
+  .vel-section-header__title {
+    @include heading-section-xxl;
+  }
+}
+
+/* ==========================================================================
+   Objectives Section — Mobile base (xs)
+   Figma: Conoce el proyecto — 3 objective cards with vertical dividers.
+   Mobile: stacked.
+   Desktop (>=992px): 3-col row with dividers.
+   ========================================================================== */
+
+.vel-objectives {
+  background: var(--vel-bg-white);
+  padding-block: 64px;
+}
+
+.vel-objectives .vel-section-header__title {
+  max-width: 50%;
+}
+
+.vel-objectives__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin-top: 32px;
+}
+
+.vel-objectives__divider {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .vel-section-content {
+    display: none;
+  }
+  
+  .vel-objectives__grid {
+    flex-direction: row;
+    gap: 0; /* Dividers provide visual separation */
+    align-items: stretch;
+  }
+
+  .vel-objectives__grid > .vel-objective-card {
+    flex: 1 1 0%;
+    min-width: 0;
+    padding: 0 clamp(16px, 2vw, 32px);
+  }
+
+  .vel-objectives__grid > .vel-objective-card:first-child {
+    padding-left: 0;
+  }
+
+  .vel-objectives__grid > .vel-objective-card:last-child {
+    padding-right: 0;
+  }
+
+  .vel-objectives__divider {
+    display: block;
+    width: 3px;
+    background: var(--vel-secondary);
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+}
+
+@media (min-width: 1200px) {
+  .vel-objectives__grid > .vel-objective-card {
+    padding: 0 40px;
+  }
+
+  .vel-objectives__grid > .vel-objective-card:first-child {
+    padding-left: 0;
+  }
+
+  .vel-objectives__grid > .vel-objective-card:last-child {
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1600px) {
+  .vel-objectives__grid > .vel-objective-card {
+    padding: 0 48px;
+  }
+
+  .vel-objectives__grid > .vel-objective-card:first-child {
+    padding-left: 0;
+  }
+
+  .vel-objectives__grid > .vel-objective-card:last-child {
+    padding-right: 0;
+  }
+}
+
+/* ==========================================================================
+   Guide Steps Section — Mobile base (xs)
+   Figma: Recursos y soporte — 4 step cards.
+   Mobile: stacked.
+   Desktop (>=992px): 4-col row.
+   ========================================================================== */
+
+.vel-guide {
+  background: var(--vel-bg-white);
+}
+
+.vel-guide .vel-section-header__line {
+  height: 5px;
+}
+
+/* When intro follows the section-header inside vel-guide, reduce the header
+   bottom margin so the description sits 32px below the decoration line
+   (instead of the default 64px applied to .vel-section-header at desktop). */
+.vel-guide .vel-section-header:has(+ .vel-guide__intro) {
+  margin-bottom: var(--vel-space-xl);
+}
+
+.vel-guide__intro {
+  font-family: var(--vel-font-body);
+  font-size: var(--vel-text-lg);
+  font-weight: 500;
+  color: var(--vel-primary);
+  line-height: var(--vel-leading-card-body);
+  margin: 0 0 var(--vel-space-xl);
+  max-width: 720px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.vel-guide__intro p {
+  margin: 0 0 var(--vel-space-md);
+}
+
+.vel-guide__intro p:last-child {
+  margin-bottom: 0;
+}
+
+.vel-guide__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vel-space-lg);
+}
+
+.vel-guide__grid .vel-step-card {
+  min-height: 180px;
+  height: auto;
+}
+
+.vel-guide__cta {
+  @include btn-primary;
+  color: var(--vel-primary);
+  margin-top: var(--vel-space-xl);
+  gap: var(--vel-space-md);
+}
+
+.vel-guide__cta svg {
+  height: 20px;
+  width: 20px;
+}
+
+@media (min-width: 768px) {
+  .vel-guide__grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--vel-space-lg);
+  }
+
+  .vel-guide__grid > * {
+    flex: 1 1 calc(50% - var(--vel-space-lg));
+    min-width: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .vel-guide .vel-section-header__line {
+    height: 10px;
+  }
+
+  .vel-guide__grid {
+    gap: var(--vel-space-lg);
+  }
+
+  .vel-guide__grid > * {
+    flex: 1 1 0%;
+    min-width: 0;
+    min-height: 255px;
+    height: auto;
+  }
+
+  .vel-guide__cta {
+    @include btn-primary-desktop;
+    margin-top: var(--vel-space-3xl); /* 64px — Figma */
+  }
+}
+
+@media (min-width: 1600px) {
+  .vel-guide__grid {
+    gap: var(--vel-space-xl);
+  }
+}
+
+/* ==========================================================================
+   CTA Section — Thin wrapper around CTA Banner component.
+   ========================================================================== */
+
+.vel-cta-section {
+  background: var(--vel-bg-white);
+}
+
+/* ==========================================================================
+   Process Stepper — hidden on mobile (no mobile design exists)
+   ========================================================================== */
+
+.vel-stepper {
+  display: none;
+}
+
+/* ==========================================================================
+   Cyber Section — Mobile base (xs)
+   Figma: Desktop 26:1883, Mobile 26:5466.
+   Mobile: stacked (title + body + 2 cards + CTA).
+   Desktop: 2-col grid (text left + cards right).
+   ========================================================================== */
+
+.vel-cyber.vel-section {
+  padding-block: var(--vel-space-xl); /* 32px mobile — Figma */
+}
+
+.vel-cyber__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vel-space-xl);
+}
+
+.vel-cyber__title {
+  @include heading-section;
+  @include title-with-decoration;
+  max-width: none;
+}
+
+.vel-cyber__title::after {
+  @include title-decoration-line;
+}
+
+/* Mobile: display:contents breaks the text wrapper so title, body, CTA
+   become direct flex children of __inner, allowing reorder with order. */
+.vel-cyber__text {
+  display: contents;
+}
+
+.vel-cyber__title {
+  order: 0;
+}
+
+.vel-cyber__body {
+  @include body-text(var(--vel-primary));
+  margin-top: var(--vel-space-sm); /* Gap handled by title margin-bottom (24px mixin) + 8px = 32px total */
+  margin-bottom: 0;
+
+  p {
+    margin: 0;
+  }
+  order: 1;
+}
+
+.vel-cyber__cards {
+  order: 2;
+}
+
+.vel-cyber__cta {
+  @include btn-primary;
+  order: 3; /* Mobile: CTA after cards */
+  align-self: flex-start;
+}
+
+.vel-cyber__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vel-space-xl);
+}
+
+/* ==========================================================================
+   Cyber — sm (576px)
+   ========================================================================== */
+
+@media (min-width: 576px) {
+  .vel-cyber__title {
+    @include heading-section-sm;
+  }
+}
+
+/* ==========================================================================
+   Cyber — md (768px)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .vel-cyber__body {
+    font-size: var(--vel-text-xl);
+    line-height: var(--vel-leading-loose);
+  }
+
+  /* Cards side-by-side from tablet to avoid huge stacked cards */
+  .vel-cyber__cards {
+    flex-direction: row;
+    gap: var(--vel-space-lg);
+  }
+
+  .vel-cyber__cards > * {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+}
+
+/* ==========================================================================
+   Cyber — lg (992px) — Desktop: 2-col grid
+   ========================================================================== */
+
+@media (min-width: 992px) {
+  .vel-cyber {
+    overflow: hidden;
+  }
+
+  .vel-cyber.vel-section {
+    padding-block: var(--vel-section-padding); /* 96px desktop */
+  }
+
+  .vel-cyber__cta {
+    width: auto;
+  }
+
+  .vel-cyber__inner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--vel-space-xl);
+    justify-content: space-between;
+  }
+
+  /* Desktop: restore text wrapper as block (undo mobile display:contents) */
+  .vel-cyber__text {
+    width: 100%;
+  }
+
+  .vel-cyber__title {
+    @include heading-section-sm;
+    @include title-with-decoration-desktop;
+    letter-spacing: var(--vel-tracking-tight);
+    margin-bottom: var(--vel-space-xl); /* 32px — gap línea→body (desktop __text block) */
+  }
+
+  .vel-cyber__title::after {
+    @include title-decoration-line-desktop;
+  }
+
+  .vel-cyber__body {
+    @include body-text-desktop;
+  }
+
+  .vel-cyber__cta {
+    @include btn-primary-desktop;
+    gap: var(--vel-space-md);
+  }
+
+  .vel-cyber__cards {
+    flex-direction: row;
+    gap: var(--vel-space-lg);
+  }
+
+  .vel-cyber__cards > * {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+}
+
+/* ==========================================================================
+   Cyber — xl (1200px)
+   ========================================================================== */
+
+@media (min-width: 1200px) {
+  .vel-cyber__inner {
+    gap: var(--vel-space-2xl);
+  }
+
+  .vel-cyber__title {
+    @include heading-section-lg;
+  }
+
+  .vel-cyber__cards {
+    gap: var(--vel-space-xl);
+  }
+}
+
+/* ==========================================================================
+   Cyber — xxl (1600px) — Full Figma spec
+   ========================================================================== */
+
+@media (min-width: 1600px) {
+  .vel-cyber__inner {
+    grid-template-columns: 738fr 1050fr;
+  }
+  
+  .vel-cyber__title {
+    @include heading-section-xxl;
+    margin-bottom: var(--vel-space-xl); /* 32px — gap línea→body (línea en flujo) */
+  }
+
+  .vel-cyber__title,
+  .vel-cyber__body,
+  .vel-cyber__cards,
+  .vel-cyber__cta {
+    order: unset;
+  }
+  
+  .vel-cyber__text {
+    display: block;
+    width: auto;
+  }
+
+  .vel-cyber__body {
+    max-width: 552px;
+    margin-top: var(--vel-space-lg);
+    margin-bottom: var(--vel-space-3xl); /* 64px — Figma gap between body and CTA */
+  }
+
+  .vel-cyber__cards {
+    gap: var(--vel-space-xl);
+  }
+
+  .vel-cyber__cards > * {
+    flex: 0 0 509px;
+  }
+}
+
+/* ==========================================================================
+   Cyber — laptop (1366–1599px): mismo layout 2-col que xxl, cards 345
+   En xl el texto sigue en display:contents (apilado); aquí restauramos el
+   wrapper como en xxl, pero con texto ~385 y cyber-cards 345×408.
+   ========================================================================== */
+
+@media (min-width: 992px) and (max-width: 1599px) {
+  .vel-cyber__text {
+    display: block;
+    width: auto;
+    max-width: 50%;
+  }
+
+  .vel-cyber__title,
+  .vel-cyber__body,
+  .vel-cyber__cards,
+  .vel-cyber__cta {
+    order: unset;
+  }
+
+  .vel-cyber__body {
+    margin-top: var(--vel-space-lg);
+    margin-bottom: var(--vel-space-xl); /* 32px (vs 64px en xxl) — body → CTA */
+  }
+
+  .vel-cyber__inner {
+    flex-wrap: nowrap;
+  }
+}
+
+/* ==========================================================================
+   Resources Section — Mobile base (xs)
+   Figma: Desktop 26:1948, Mobile 26:5413.
+   ========================================================================== */
+
+.vel-resources {
+  background: rgba(228, 228, 228, 0.3);
+  padding-top: var(--vel-space-3xl); /* 64px mobile */
+  padding-bottom: var(--vel-space-xl); /* 32px mobile */
+
+  @media (min-width: 992px) {
+    padding-top: var(--vel-section-padding); /* 96px desktop */
+    padding-bottom: var(--vel-section-padding); /* 96px desktop */
+  }
+}
+
+.vel-resources__header {
+  margin-bottom: var(--vel-space-xl);
+}
+
+.vel-resources__title {
+  @include heading-section;
+  @include title-with-decoration;
+}
+
+.vel-resources__title::after {
+  @include title-decoration-line;
+}
+
+.vel-resources__subtitle {
+  margin-top: var(--vel-space-xl); /* 32px — gap línea→subtítulo (línea en flujo, refactor #113) */
+
+  strong {
+    font-weight: 800; /* ExtraBold — matches Figma mobile */
+    color: var(--vel-primary); /* Bold text is #00466E even in mobile */
+  }
+}
+
+.vel-resources__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vel-space-xl); /* 32px between cards mobile */
+}
+
+/* Mobile CTA (primary/accent) */
+.vel-resources__cta--mobile {
+  @include btn-primary;
+  margin-top: var(--vel-space-xl); /* 32px */
+}
+
+/* Desktop CTA (secondary/outline) — base hidden, shown at lg+ */
+.vel-resources__cta--desktop {
+  @include btn-secondary;
+  margin-top: var(--vel-space-3xl); /* 64px */
+  gap: var(--vel-space-md); /* 16px — Figma gap between text and chevron */
+}
+
+/* ==========================================================================
+   Resources — sm (576px)
+   ========================================================================== */
+
+@media (min-width: 576px) {
+  .vel-resources__title {
+    @include heading-section-sm;
+  }
+}
+
+/* ==========================================================================
+   Resources — md (768px)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .vel-resources__grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--vel-space-lg);
+  }
+
+  .vel-resources__grid > * {
+    flex: 1 1 calc(50% - var(--vel-space-lg));
+    min-width: 0;
+  }
+
+  .vel-resources__subtitle {
+    max-width: 552px;
+
+    strong {
+      font-weight: 700; /* Bold in desktop (not ExtraBold like mobile) */
+    }
+  }
+
+  .vel-resources__header {
+    margin-bottom: var(--vel-space-2xl);
+  }
+}
+
+/* ==========================================================================
+   Resources — lg (992px) — Desktop: 3-col
+   ========================================================================== */
+
+@media (min-width: 992px) {
+  .vel-resources__title {
+    @include heading-section-lg;
+    @include title-with-decoration-desktop;
+  }
+
+  .vel-resources__title::after {
+    @include title-decoration-line-desktop;
+  }
+
+  .vel-resources__grid {
+    flex-wrap: nowrap;
+    gap: var(--vel-space-lg);
+    margin-top: 0; /* Grid follows header directly in desktop layout */
+  }
+
+  .vel-resources__grid > * {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+
+  .vel-resources__cta--desktop {
+    padding: 16px 32px;
+    height: auto;
+    border-radius: var(--vel-card-radius);
+    font-size: var(--vel-text-lg);
+    margin-top: var(--vel-space-3xl); /* 64px */
+    text-decoration: none;
+  }
+
+  .vel-resources__header {
+    margin-bottom: var(--vel-space-3xl); /* 64px gap between header and cards */
+  }
+}
+
+/* ==========================================================================
+   Resources — xxl (1600px) — Full Figma spec
+   ========================================================================== */
+
+@media (min-width: 1600px) {
+  .vel-resources__title {
+    @include heading-section-xxl;
+  }
+
+  .vel-resources__subtitle {
+    margin-top: var(--vel-space-xl);
+  }
+}
+
+/* ==========================================================================
+   Resources — laptop (1366–1599px)
+   ========================================================================== */
+
+@media (min-width: 992px) and (max-width: 1599px) {
+  .vel-resources__cta--desktop {
+    margin-top: var(--vel-space-xl); /* 32px (vs 64px en lg) */
+  }
+}
+
+/* ==========================================================================
+   News Home Section — Mobile base (xs)
+   Figma: Desktop 26:2007, Mobile 26:5529.
+   Mobile: 3 cards stacked (4th hidden).
+   Desktop: 4 cards in row.
+   ========================================================================== */
+
+.vel-news-home {
+  background: var(--vel-bg-white);
+  padding-top: 0;
+  padding-bottom: 64px;
+}
+
+.vel-news-home-block {
+  padding-top: 32px;
+  padding-bottom: 0;
+}
+
+/* Header (title + línea en flujo). gap línea→grid = 32px real (refactor #113:
+   antes 56px compensaba la línea absoluta; ahora la línea ocupa espacio). */
+.vel-news-home__header {
+  margin-bottom: var(--vel-space-xl); /* 32px */
+}
+
+.vel-news-home__title {
+  @include heading-section;
+  @include title-with-decoration;
+}
+
+.vel-news-home__title::after {
+  @include title-decoration-line;
+}
+
+/* Mobile: subtitle hidden per Figma 26:5529 (no subtitle in mobile design) */
+.vel-news-home__subtitle {
+  display: none;
+  @include body-text(var(--vel-primary));
+  margin-top: var(--vel-space-lg);
+}
+
+/* Mobile: gap 32px between cards */
+.vel-news-home__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vel-space-xl);
+  margin-top: var(--vel-space-xl);
+}
+
+/* Hide 4th card on mobile */
+.vel-news-home__grid > :nth-child(4) {
+  display: none;
+}
+
+/* Mobile CTA: primary accent, after grid (Figma "Saber más") */
+.vel-news-home__cta--mobile {
+  @include btn-primary;
+  margin-top: var(--vel-space-xl);
+}
+
+/* Desktop CTA: hidden on mobile */
+.vel-news-home__cta--desktop {
+  display: none;
+}
+
+/* Chevron icon inside desktop CTA */
+.vel-news-home__cta-icon {
+  width: 12px;
+  height: 19px;
+  stroke: currentColor;
+}
+
+/* ==========================================================================
+   News Home — sm (576px)
+   ========================================================================== */
+
+@media (min-width: 576px) {
+  .vel-news-home__title {
+    @include heading-section-sm;
+  }
+}
+
+/* ==========================================================================
+   News Home — md (768px)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .vel-news-home__grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--vel-space-lg);
+  }
+
+  .vel-news-home__grid > * {
+    flex: 1 1 calc(50% - var(--vel-space-lg));
+    min-width: 0;
+  }
+
+  .vel-news-home__header {
+    margin-bottom: var(--vel-space-2xl);
+  }
+}
+
+/* ==========================================================================
+   News Home — lg (992px) — Desktop: 4 in row (show 4th card)
+   Figma 26:2007: title 80px ExtraBold, subtitle visible, secondary CTA + chevron.
+   ========================================================================== */
+
+@media (min-width: 992px) {
+  /* Figma desktop: 80px ExtraBold, tracking -1.8px, leading 80px */
+  .vel-news-home__title {
+    @include heading-section-xxl; // 80px — Figma shows 80px at lg, not 72px
+    letter-spacing: var(--vel-tracking-tight);
+    max-width: none;
+    @include title-with-decoration-desktop;
+  }
+
+  .vel-news-home__title::after {
+    @include title-decoration-line-desktop;
+  }
+
+  /* Desktop: show subtitle — Urbanist Medium 20px, #00466E, max-width 552px */
+  .vel-news-home__subtitle {
+    display: block;
+    @include body-text-desktop;
+    max-width: 552px;
+  }
+
+  .vel-news-home__grid {
+    flex-wrap: wrap;
+    gap: var(--vel-space-lg);
+    margin-top: var(--vel-space-2xl);
+  }
+
+  .vel-news-home__grid > * {
+    min-width: 0;
+  }
+
+  /* Show 4th card on desktop */
+  .vel-news-home__grid > :nth-child(4) {
+    display: block;
+  }
+
+  /* Hide mobile CTA, show desktop CTA */
+  .vel-news-home__cta--mobile {
+    display: none;
+  }
+
+  .vel-news-home__cta--desktop {
+    @include btn-secondary;
+    padding: 16px 32px;
+    height: auto;
+    border-radius: var(--vel-card-radius);
+    font-size: var(--vel-text-lg);
+
+    &:hover,
+    &:focus {
+      background: var(--vel-primary);
+      color: var(--vel-bg-white);
+    }
+  }
+
+  /* 64px between header and grid */
+  .vel-news-home__header {
+    margin-bottom: 64px;
+  }
+
+  /* 64px between subtitle and CTA */
+  .vel-news-home__cta--desktop {
+    margin-top: 64px;
+  }
+}
+
+/* ==========================================================================
+   News Home — laptop (1366–1599px) — 3 cards en una fila
+   Figma laptop: el bloque solo muestra 3 cards (la 4ª se oculta). La view
+   sigue cargando 4 nodos; lo que cambia aquí es la presentación.
+   Math: con gap 24 y contenido 1206px → (1206 - 48) / 3 = 386px por card.
+   ========================================================================== */
+
+@media (min-width: 992px) and (max-width: 1599px) {
+  .vel-news-home__grid > * {
+    flex: 0 0 calc((100% - 2 * var(--vel-space-lg)) / 3);
+  }
+
+  .vel-news-home__grid > :nth-child(4) {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   News Home — 2xl (1600px) — Desktop: 4 in row (show 4th card)
+   Figma 26:2007: title 80px ExtraBold, subtitle visible, secondary CTA + chevron.
+   ========================================================================== */
+
+@media (min-width: 1600px) {
+  .vel-news-home__grid > * {
+    flex: 1;
+  }
+}
+
+/* ==========================================================================
+   Process Stepper — lg (992px) — Desktop only
+   Figma: 26:1829. Hidden below 992px.
+   ========================================================================== */
+
+@media (min-width: 992px) {
+  .vel-stepper {
+    display: block;
+  }
+
+  .vel-stepper__title {
+    @include heading-section;
+    @include heading-section-lg;
+    @include title-with-decoration;
+    @include title-with-decoration-desktop;
+    margin-bottom: var(--vel-space-3xl); /* 64px — gap línea→cards (línea en flujo) */
+  }
+
+  /* When intro follows the title, the gap línea→intro is 32px. */
+  .vel-stepper__title:has(+ .vel-stepper__intro) {
+    margin-bottom: var(--vel-space-xl); /* 32px — gap línea→intro */
+  }
+
+  .vel-stepper__title::after {
+    @include title-decoration-line;
+    @include title-decoration-line-desktop;
+  }
+
+  .vel-stepper__intro {
+    font-family: var(--vel-font-body);
+    font-size: var(--vel-text-lg);
+    font-weight: 500;
+    color: var(--vel-primary);
+    line-height: var(--vel-leading-card-body);
+    margin: 0 0 var(--vel-space-xl); /* 32px to grid */
+    max-width: 720px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    p {
+      margin: 0 0 var(--vel-space-md);
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .vel-stepper__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vel-space-xl); /* 32px — Figma gap between cards */
+    align-items: center;
+    margin-top: 0;
+    justify-content: center;
+    position: relative; /* Anchor for expanded cards (position:absolute) */
+  }
+
+  /* Cards wrap into 2 rows (3+2) when viewport is tight. */
+  .vel-stepper__grid > * {
+    flex: 0 0 auto;
+  }
+}
+
+/* ==========================================================================
+   Stepper — xl (1200px) — Still wrapping, just more gap
+   ========================================================================== */
+
+@media (min-width: 1200px) {
+  .vel-stepper__grid {
+    gap: var(--vel-space-xl);
+    margin-top: 56px;
+  }
+}
+
+/* ==========================================================================
+   Stepper — laptop (992px) — Force 5 cards in a single row
+   Figma laptop 272:xxxx: cards 214px wide, gap 32px (4 gaps × 32 + 5 × 214
+   = 1198px ≈ 1206px of available content at 1366 viewport with 160px padding).
+   ========================================================================== */
+
+@media (min-width: 992px) {
+  .vel-stepper__grid {
+    flex-wrap: nowrap;
+  }
+
+  .vel-stepper__grid > * {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+}
+
+/* ==========================================================================
+   Stepper — xxl (1600px) — Title scales up + slightly larger margin
+   ========================================================================== */
+
+@media (min-width: 1600px) {
+  .vel-stepper__title {
+    @include heading-section-xxl;
+  }
+
+  .vel-stepper__grid {
+    margin-top: 62px;
+  }
+}
+
+/* ==========================================================================
+   Video block grid (videotutoriales block_1 in Recursos y soporte)
+   ========================================================================== */
+
+.vel-video-block__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--vel-space-lg);
+}
+
+@media (min-width: 576px) {
+  .vel-video-block__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .vel-video-block__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--vel-space-xl);
+  }
+}
+
+/* xxl (1600px) — 4 columnas para el bloque de Videotutoriales en Desktop. */
+@media (min-width: 1600px) {
+  .vel-video-block__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Map Section — "Mapa de ayuntamientos seguros"
+   Figma: Desktop 26:3310 (Conoce el proyecto).
+   Background: rgba(228,228,228,0.3).
+   Title: 80px ExtraBold centered, cyan line, subtitle 24px Medium centered.
+   ========================================================================== */
+
+/* Figma mobile 241:2765: py-64px px-16px, gap 32px */
+.vel-map-section {
+  background: rgba(228, 228, 228, 0.3);
+  padding: 64px 16px;
+  overflow: hidden;
+}
+
+.vel-map-section__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.vel-map-section__header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.vel-map-section__header .vel-section-title {
+  text-align: left;
+}
+
+.vel-map-section__header .vel-section-title::after {
+  left: 0;
+}
+
+/* Figma mobile: Urbanist Medium 20px, line-height 32.5px, color #4A5565 */
+.vel-map-section__subtitle {
+  font-family: var(--vel-font-body);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--vel-text-muted);
+  line-height: 32.5px;
+  margin: 0;
+  text-align: left;
+}
+
+.vel-map-section__map {
+  width: 100%;
+  max-width: 1597px;
+  position: relative;
+  margin-bottom: 0;
+}
+
+@media (min-width: 992px) {
+  .vel-map-section__map {
+    margin-bottom: 140px;
+  }
+}
+
+/* lg (992px) — Figma desktop 241:2390: top 94px, gap 129px header-to-map */
+@media (min-width: 992px) {
+  .vel-map-section {
+    padding: 94px var(--vel-content-padding) 0;
+  }
+
+  .vel-map-section__inner {
+    align-items: center;
+    gap: 129px;
+  }
+
+  .vel-map-section__header {
+    width: auto;
+    gap: 34px;
+    align-items: center;
+  }
+
+  .vel-map-section__header .vel-section-title {
+    text-align: center;
+    max-width: none;
+  }
+
+  .vel-map-section__header .vel-section-title::after {
+    height: 10px;
+    margin-inline: auto; /* centra la línea (en flujo) bajo el título centrado */
+  }
+
+  .vel-map-section__subtitle {
+    font-size: var(--vel-text-2xl);
+    line-height: 39px;
+    max-width: 937px;
+    text-align: center;
+  }
+}
+
+/* xxl (1600px) */
+@media (min-width: 1600px) {
+  .vel-map-section__header .vel-section-title {
+    font-size: var(--vel-text-6xl);
+    line-height: var(--vel-leading-heading-xl);
+  }
+}
+
+/* ==========================================================================
+   laptop (1366-1599px) — QA: paddings de sección conforme a Figma laptop.
+   ========================================================================== */
+@media (min-width: 992px) and (max-width: 1599px) {
+  .vel-guide.vel-section {
+    padding-block: var(--vel-space-3xl); /* 64px (vs 96 desktop) */
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "mhg-theme",
+  "version": "1.0.0",
+  "description": "Gulp build system for MHG Barandas Huertas Drupal theme",
+  "private": true,
+  "scripts": {
+    "build": "gulp build",
+    "watch": "gulp watch",
+    "dev": "gulp watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "gulp": "^5.0.0",
+    "gulp-postcss": "^10.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^6.0.1",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.1.0",
+    "sass": "^1.87.0"
+  }
+}

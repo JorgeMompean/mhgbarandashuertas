@@ -1,0 +1,60 @@
+/**
+ * @file
+ * Back to top button styles.
+ * Visible on all resolutions. Fixed to bottom-right of viewport.
+ */
+
+.vel-back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 0;
+  background-color: var(--vel-bg-white);
+  border: 1px solid var(--vel-border);
+  border-radius: var(--vel-card-radius) 0 0 var(--vel-card-radius);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+
+  /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  /* Visible state */
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Hover state */
+  &:hover,
+  &:focus-visible {
+    background-color: var(--vel-accent);
+    border-color: var(--vel-accent);
+    color: var(--vel-bg-white);
+  }
+
+  /* Focus styles for accessibility */
+  &:focus-visible {
+    outline: 2px solid var(--vel-accent);
+    outline-offset: 2px;
+  }
+
+  svg {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover svg,
+  &:focus-visible svg {
+    transform: translateY(-2px);
+    path {
+      stroke: var(--vel-bg-white);
+    }
+  }
+}

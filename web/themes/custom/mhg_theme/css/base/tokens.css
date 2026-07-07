@@ -1,0 +1,346 @@
+@charset "UTF-8";
+/**
+ * @file
+ * Design tokens extracted from Figma (Velantis v2).
+ */
+:root {
+  /* Colors */
+  --vel-primary: #00466E;
+  --vel-secondary: #0085AC;
+  --vel-accent: #00BDFB;
+  --vel-bg-light: #E4E4E4;
+  --vel-bg-light-rgb: 228, 228, 228;
+  --vel-bg-white: #FFFFFF;
+  --vel-text-dark: #000000;
+  --vel-text-muted: #4A5565;
+  --vel-text-muted-2: #6A7282;
+  --vel-border: #E4E4E4;
+  --vel-primary-transparent: rgba(0, 70, 110, 0);
+  --vel-primary-10: rgba(0, 70, 110, 0.1);
+  --vel-primary-40: rgba(0, 70, 110, 0.4);
+  /* Typography */
+  --vel-font-heading: 'Funnel Display', sans-serif;
+  --vel-font-body: 'Urbanist', sans-serif;
+  /* Font sizes
+   * Scale: xs(12) sm(14) base(16) lg(18) xl(20) 2xl(24) 3xl(30) 3xl-plus(36) 4xl(48) 5xl(72) 6xl(80) 7xl(128)
+   */
+  --vel-text-xs: 0.75rem; /* 12px — badges, metadata */
+  --vel-text-sm: 0.875rem; /* 14px — labels, tags, pills */
+  --vel-text-base: 1rem; /* 16px — nav, card body, buttons mobile */
+  --vel-text-lg: 1.125rem; /* 18px — body text, buttons desktop */
+  --vel-text-xl: 1.25rem; /* 20px — section body desktop */
+  --vel-text-2xl: 1.5rem; /* 24px — card titles, footer heading */
+  --vel-text-3xl: 1.875rem; /* 30px — subtitle text */
+  --vel-text-3xl-plus: 2.25rem; /* 36px — mobile section titles, hero subtitle, stats numbers */
+  --vel-text-4xl: 3rem; /* 48px — section headings sm breakpoint */
+  --vel-text-5xl: 4.5rem; /* 72px — section headings lg breakpoint */
+  --vel-text-6xl: 5rem; /* 80px — section headings xxl breakpoint */
+  --vel-text-7xl: 8rem; /* 128px — hero accent text */
+  /* Line heights */
+  --vel-leading-meta: 16px; /* metadata, stats labels, small text */
+  --vel-leading-tight: 20px; /* tags, pills, small UI */
+  --vel-leading-snug: 24px; /* card body 16px, back-link */
+  --vel-leading-normal: 25px; /* contact labels */
+  --vel-leading-card-body: 26px; /* body text 18px, card descriptions */
+  --vel-leading-relaxed: 28px; /* buttons, info boxes, accordions */
+  --vel-leading-body: 29.25px; /* body text 20px desktop */
+  --vel-leading-card-title: 32px; /* card titles 24px, footer headings */
+  --vel-leading-loose: 32.5px; /* body text 20px desktop alt */
+  --vel-leading-heading-sm: 36px; /* section titles mobile 36px */
+  --vel-leading-heading-sm-plus: 48px; /* stats numbers mobile, large headings */
+  --vel-leading-heading-md: 48.75px; /* section titles sm (48px) */
+  --vel-leading-heading-lg: 72px; /* section titles lg (72px) */
+  --vel-leading-heading-xl: 80px; /* section titles xxl (80px) */
+  --vel-leading-heading-2xl: 128px; /* section titles xxl (128px) */
+  /* Letter spacing */
+  --vel-tracking-tight: -1.8px;
+  --vel-tracking-snug: -0.75px;
+  --vel-tracking-wide: 1.4px;
+  --vel-tracking-label: 0.6px; /* uppercase labels mobile (Figma: letter-spacing/0.6) */
+  --vel-tracking-normal: 2px;
+  /* Spacing */
+  --vel-space-xs: 0.25rem; /* 4px */
+  --vel-space-sm: 0.5rem; /* 8px */
+  --vel-space-md: 1rem; /* 16px */
+  --vel-space-lg: 1.5rem; /* 24px */
+  --vel-space-xl: 2rem; /* 32px */
+  --vel-space-2xl: 3rem; /* 48px */
+  --vel-space-3xl: 4rem; /* 64px */
+  /* Layout */
+  --vel-max-width-content: 1045px;
+  --vel-max-width: 1920px;
+  --vel-content-padding: 80px;
+  --vel-section-padding: 96px; /* 6rem — vertical padding for desktop sections */
+  --vel-border-radius: 8px;
+  --vel-card-radius: 16px;
+  --vel-card-radius-sm: 24px;
+  --vel-card-radius-lg: 40px;
+  --vel-card-radius-xl: 56px;
+  --vel-pill-radius: 42px;
+  --vel-section-radius: 64px;
+  /* Shadows */
+  --vel-shadow-sm: 0 1px 2px -1px rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --vel-shadow-deep: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --vel-shadow-blue: 0 20px 50px 0 rgba(0, 189, 251, 0.3);
+  /* Mobile shadows */
+  --vel-shadow-sm-mobile: 0 0 10px -12px rgba(0, 0, 0, 0.2);
+  --vel-shadow-deep-mobile: 0 0 20px -12px rgba(0, 0, 0, 0.5);
+  --vel-shadow-blue-mobile: 0 0 20px 0 rgba(0, 189, 251, 0.3);
+  /* Mobile layout overrides */
+  --vel-card-radius-mobile: 24px;
+  --vel-btn-radius-mobile: 12px;
+  /* Gradients */
+  --vel-gradient-hero: linear-gradient(90deg, #00466E 0%, rgba(0, 70, 110, 0.4) 50%, rgba(0, 70, 110, 0) 100%);
+  --vel-gradient-section: linear-gradient(90deg, #18476F 0%, #2983A9 100%);
+  --vel-gradient-card-overlay: linear-gradient(123deg, rgba(41, 131, 169, 0.7) 14%, rgba(24, 71, 111, 0.7) 76%);
+  --vel-gradient-news-card: linear-gradient(13.33deg, rgb(0, 38, 57) 18%, rgba(0, 103, 162, 0) 102%);
+  --vel-gradient-card-subtle: linear-gradient(0deg, rgba(0, 70, 110, 0.05) 0%, rgba(0, 70, 110, 0) 100%);
+}
+
+/* ==========================================================================
+   Laptop tier (992px – 1599px) — Card #99
+   ==========================================================================
+   Escala tipográfica para el tier laptop según Figma "Producción - Pantallas
+   Laptop" (página 272:1695). El theme tiene un hueco en su escalera de
+   breakpoints (576/768/992/1200/1600) entre 1200 y 1600 — la banda laptop
+   cae en el tier @xl (≥1200) que está dimensionado para Desktop completo.
+
+   Estrategia: redefinir los tokens tipográficos para cubrir la mayoría de
+   selectores por herencia, y resolver los conflictos (donde el target
+   Figma diverge de la nueva semántica del token) con overrides quirúrgicos
+   al final del bloque. UN SOLO punto de verdad.
+
+   Audit Figma exhaustivo (9 páginas, ~50 textos) en
+   docs/card-99-laptop-audit-figma.md.
+   --------------------------------------------------------------------------
+*/
+@media (min-width: 992px) and (max-width: 1599px) {
+  :root {
+    /* Headings */
+    --vel-text-7xl: 5.125rem; /* 128px → 82px : Hero Home "Velantis" (cubierto también por override directo) */
+    --vel-text-6xl: 3rem; /* 80px  → 48px : H2 sección (heading-section-xxl) */
+    --vel-text-5xl: 3rem; /* 72px  → 48px : H2 sección (heading-section-lg). Hero --page H1 obtiene 52 por override directo abajo */
+    --vel-text-3xl-plus: 1.25rem; /* 36px  → 20px : Card destacada (news/video featured) — token + override directo */
+    /* Body / paragraph */
+    --vel-text-2xl: 1.25rem; /* 24px → 20px : Sub-H2 detalle vídeo, conclusion title, article H2 cuerpo */
+    --vel-text-xl: 0.875rem; /* 20px → 14px : Body desktop (Somos, Ciber, Recursos, CTA Banner) */
+    --vel-text-lg: 0.875rem; /* 18px → 14px : Body cards, descripciones, CTAs, tabs, FAQ respuesta */
+    --vel-text-base: 0.875rem; /* 16px → 14px : Meta autor/fecha/tiempo, info-box, feedback, checklist */
+    /* --vel-text-4xl (48), --vel-text-3xl (30), --vel-text-sm (14), --vel-text-xs (12): sin cambio */
+    /* Line-heights body: en el Figma laptop la mayoría de body texts pasan a
+       "LH normal" (calculado por navegador, ~1.2). Aplica a: about-section
+       body, hero descripciones, CAU description, FAQ respuesta, step body,
+       article body, author-bio bio, sub-H2 descripción detalle vídeo. */
+    --vel-leading-loose: normal; /* 32.5px → normal : body 20px desktop */
+    --vel-leading-body: normal; /* 29.25px → normal : body 20px alt */
+    --vel-leading-card-body: normal; /* 26px → normal : card body 18px */
+    --vel-leading-relaxed: normal; /* 28px → normal : CTAs, info boxes, accordions */
+    /* NOTE: --vel-leading-heading-lg/xl NO se redefinen aquí. Tocar el line-height
+       rompe los títulos multilínea (texto solapado). En su lugar movemos sólo
+       la línea decorativa con override directo bottom: -26px en los ::after. */
+  }
+  /* ---- Overrides quirúrgicos (target Figma ≠ valor del token redefinido) ----
+     Todos los selectores usan `html` raíz para ganar especificidad sobre los
+     `.vel-*` de las CSS de componentes (que cargan después de tokens.css). */
+  /* Header: nav links 13px (default base es 14 tras redef, target 13) */
+  html .vel-header__nav-link {
+    font-size: 13px;
+  }
+  /* Hero Home: "Proyecto" 52px, "Velantis" 82px, body 18px */
+  html .vel-hero--home .vel-hero__subtitle {
+    font-size: 3.25rem; /* 52px (sustituye 80px @lg) */
+    line-height: 1.4; /* Figma laptop: LH 1.4 (más airoso) */
+  }
+  html .vel-hero--home .vel-hero__title {
+    font-family: "Red Hat Display", sans-serif; /* Figma laptop usa Red Hat
+Display sólo para "Velantis" en banda
+(en desktop sigue Funnel Display). */
+    font-size: 5.125rem; /* 82px (sustituye 100px @lg, 128px @xxl) */
+    line-height: 60px; /* Figma laptop: LH 60px (ratio 0.73, tight) */
+    text-underline-offset: 0.1em; /* ~8px, baja la línea del subrayado para
+    acercarse visualmente al Figma (el valor
+    de Figma no es fiable, ajustado a ojo). */
+  }
+  html .vel-hero--home .vel-hero__body {
+    font-size: 1.125rem; /* 18px (sustituye 30px token 3xl no redef) */
+    line-height: normal;
+  }
+  /* Hero --page: H1 52px (sobre token 5xl=48), subtitle 18px (sobre token xl=14) */
+  html .vel-hero--page .vel-hero__title {
+    font-size: 3.25rem; /* 52px */
+    line-height: var(--vel-leading-heading-lg); /* 72px */
+  }
+  html .vel-hero--page .vel-hero__subtitle {
+    font-size: 1.125rem; /* 18px */
+    line-height: normal;
+  }
+  /* CAU title: 48px (sustituye 80px hardcoded @lg). LH normal regla global. */
+  html .vel-cau__title {
+    font-size: 3rem; /* 48px */
+    line-height: normal;
+  }
+  /* H2 sección — regla global en banda laptop:
+     - font-size 48px (override donde sea necesario; muchos ya llegan por
+       heading-section-lg que usa --vel-text-5xl=48 redefinido)
+     - line-height: normal (para que las multilínea no separen líneas en exceso
+       y la caja del título no quede más alta que el texto)
+     - ::after bottom: -20px (acerca la línea azul al texto en banda) */
+  html .vel-about__title,
+  html .vel-about-project__title,
+  html .vel-cyber__title,
+  html .vel-cyber-ref__title,
+  html .vel-resources__title,
+  html .vel-news-home__title,
+  html .vel-stepper__title,
+  html .vel-section-title {
+    line-height: normal;
+  }
+  /* Override font-size 48 para los que tienen valor hardcoded en @xl/@lg */
+  html .vel-about-project__title {
+    font-size: 3rem;
+  } /* 64px → 48px */
+  html .vel-cyber-ref__title {
+    font-size: 3rem;
+  } /* 72px → 48px */
+  html .vel-section-title {
+    font-size: 3rem;
+  } /* 20px (hereda 3xl-plus) → 48px */
+  html .vel-cta-banner__title {
+    font-size: 3rem;
+    line-height: normal;
+  } /* 56px → 48px */
+  /* Section header "Nuestros objetivos": usa elemento real .vel-section-header__line
+     en lugar de ::after. En banda laptop el gap título→línea se ciñe a 8px. */
+  html .vel-section-header__title {
+    line-height: normal;
+  }
+  html .vel-section-header__line {
+    margin-top: var(--vel-space-sm); /* 8px — gap título→línea (laptop) */
+  }
+  /* Línea decorativa (::after en flujo, refactor #113): en banda laptop el gap
+     título→línea se ciñe a 8px (vs 32 del desktop). margin-top, NO bottom. */
+  html .vel-about__title::after,
+  html .vel-about-project__title::after,
+  html .vel-cau__title::after,
+  html .vel-cyber__title::after,
+  html .vel-cyber-ref__title::after,
+  html .vel-resources__title::after,
+  html .vel-news-home__title::after,
+  html .vel-stepper__title::after,
+  html .vel-section-title::after {
+    margin-top: var(--vel-space-sm); /* 8px */
+  }
+  /* Cyber-card overlay título: mantener 24px (sustituye 28px @lg, 36px @xl, 36px @xxl) */
+  html .vel-cyber-card__title {
+    font-size: 1.5rem; /* 24px */
+    line-height: var(--vel-leading-card-title); /* 32px */
+  }
+  /* Cyber-card body: line-height 24px hardcoded en cyber-card.scss @xl (l.202).
+     Como no pasa por token, override directo a normal según Figma laptop. */
+  html .vel-cyber-card__body {
+    line-height: normal;
+  }
+  /* News/Video featured título: 20px (sustituye 32px hardcoded @xl) */
+  html .vel-news-featured__title,
+  html .vel-video-featured__title {
+    font-size: 1.25rem; /* 20px */
+    line-height: 28px;
+  }
+  /* News card normal título: mantener 24px (Figma laptop = Figma desktop, token 2xl bajó a 20) */
+  html .vel-news-card__title {
+    font-size: 1.5rem; /* 24px */
+    line-height: var(--vel-leading-card-title); /* 32px */
+  }
+  /* Video card normal título: 18px (token lg bajó a 14; Figma laptop = Figma desktop) */
+  html .vel-video-card__title {
+    font-size: 1.125rem; /* 18px */
+  }
+  /* About-project COCS/CCN card título: 18px */
+  html .vel-about-project__card-title {
+    font-size: 1.125rem; /* 18px */
+  }
+  /* Objective-card título: 32px (sustituye 44px @xl, 48px @xxl) */
+  html .vel-objective-card__title {
+    font-size: 2rem; /* 32px */
+    line-height: var(--vel-leading-heading-sm); /* 36px */
+  }
+  /* Stats numbers: 38px (sustituye 48px @lg, 64px @xl).
+     El 4º del Home ("Despliegues") es 32px — selector específico abajo. */
+  html .vel-stats__number,
+  html .vel-stats__number--text {
+    font-size: 38px;
+    line-height: var(--vel-leading-heading-sm); /* 36px */
+  }
+  /* Stats Home 4º item "Despliegues" más pequeño que los otros 3 */
+  html .vel-stats--home .vel-stats__card:nth-child(4) .vel-stats__number--text {
+    font-size: 32px;
+  }
+  /* Stats labels: Figma laptop spec exacto.
+     color: rgba(255,255,255,0.70), font-size 14px, font-weight 600,
+     line-height: normal, letter-spacing 1.4px, uppercase. */
+  html .vel-stats__label,
+  html .vel-stats__label--long {
+    font-size: var(--vel-text-sm); /* 14px */
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: var(--vel-tracking-wide); /* 1.4px */
+    color: rgba(255, 255, 255, 0.7);
+    min-height: 0; /* anula 85px del @lg que desalinea */
+  }
+  /* Stats card: gap header→label 20px (Figma laptop, sustituye 32px del @lg) */
+  html .vel-stats__card {
+    gap: var(--vel-space-lg); /* 24px */
+  }
+  /* Author-bio: nombre 20px, rol 16px (sobre tokens xl=14, base=14) */
+  html .vel-author-bio__name {
+    font-size: 1.25rem; /* 20px */
+  }
+  html .vel-author-bio__role {
+    font-size: 1rem; /* 16px */
+  }
+  /* About-section CTA "Saber más": 18px (sobre token lg=14) */
+  html .vel-about-section__cta {
+    font-size: 1.125rem; /* 18px */
+  }
+  /* FAQ accordion pregunta cerrada/abierta: 18px (sobre token lg=14) */
+  html .vel-faq-accordion__question,
+  html .vel-faq-accordion__question-text {
+    font-size: 1.125rem; /* 18px */
+  }
+  /* Step-card título Recursos: 20px (sobre token lg=14) */
+  html .vel-step-card__title {
+    font-size: 1.25rem; /* 20px */
+    line-height: var(--vel-leading-relaxed); /* 28px */
+  }
+  /* Phase-card Home stepper: "Fase N:" expandido 48px (sustituye 64px @xl) */
+  html .vel-phase-card--expanded .vel-phase-card__phase {
+    font-size: var(--vel-text-4xl); /* 48px */
+    line-height: 1;
+  }
+  /* CAU body: line-height hardcoded 32.5px en contact-cau.scss (@lg línea 293).
+     El font-size sí baja a 14 vía token xl, pero el LH se queda. Override. */
+  html .vel-cau__body {
+    line-height: normal;
+  }
+  /* Step-card body: font-size + line-height hardcoded en step-card.scss
+     (@lg: 18px/24px). Ninguno pasa por token, así que necesita override completo
+     para que en banda baje a 14px / LH normal según Figma laptop. */
+  html .vel-step-card__body {
+    font-size: 0.875rem; /* 14px */
+    line-height: normal;
+  }
+  /* Map section subtitle (Conoce el proyecto): 20px/32.5px hardcoded en
+     sections.scss. Figma laptop: 14px / LH normal. */
+  html .vel-map-section__subtitle {
+    font-size: 0.875rem; /* 14px */
+    line-height: normal;
+  }
+  /* Footer: restaurar tokens dentro del scope para mantener sizes desktop.
+     Sin esto los links/headings heredan 14px y el footer se desestructura. */
+  html .vel-footer {
+    --vel-text-2xl: 1.5rem; /* 24px — headings columnas */
+    --vel-text-lg: 1.125rem; /* 18px — body desc */
+    --vel-text-base: 1rem; /* 16px — links */
+  }
+}
+/*# sourceMappingURL=tokens.css.map */
