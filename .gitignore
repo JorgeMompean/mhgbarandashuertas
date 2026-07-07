@@ -1,0 +1,10 @@
+vendor/
+web/core/
+web/sites/default/files/*
+web/sites/development.services.yml
+web/sites/*/settings.local.php
+web/modules/contrib
+web/themes/contrib
+
+docs
+dbUP
