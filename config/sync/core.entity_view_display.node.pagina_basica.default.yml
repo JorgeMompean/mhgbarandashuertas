@@ -1,0 +1,55 @@
+uuid: fba911b9-ec69-4dca-bc33-7e30d0486a69
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.pagina_basica.field_body
+    - node.type.pagina_basica
+  module:
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          96850f72-d714-46b2-bcf5-32cac03bb429:
+            uuid: 96850f72-d714-46b2-bcf5-32cac03bb429
+            region: content
+            configuration:
+              id: 'extra_field_block:node:pagina_basica:links'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 0
+            additional: {  }
+          65afb6c6-5f01-4001-a445-cbd713842472:
+            uuid: 65afb6c6-5f01-4001-a445-cbd713842472
+            region: content
+            configuration:
+              id: 'field_block:node:pagina_basica:field_body'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: basic_string
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+id: node.pagina_basica.default
+targetEntityType: node
+bundle: pagina_basica
+mode: default
+content: {  }
+hidden:
+  langcode: true
+  links: true
+  field_body: true

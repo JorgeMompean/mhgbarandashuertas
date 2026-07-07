@@ -1,0 +1,20 @@
+uuid: a831a8ea-a72d-42a1-b542-33b2e2546926
+langcode: es
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - mhg_theme
+id: mhg_theme_funcionacondrupal
+theme: mhg_theme
+region: header
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Funciona con Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

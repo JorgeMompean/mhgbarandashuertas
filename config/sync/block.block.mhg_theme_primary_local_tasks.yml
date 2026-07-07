@@ -1,0 +1,22 @@
+uuid: f6dd57fd-c440-4744-947a-8d80f54597dc
+langcode: es
+status: true
+dependencies:
+  theme:
+    - mhg_theme
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: mhg_theme_primary_local_tasks
+theme: mhg_theme
+region: highlighted
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Solapas principales'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

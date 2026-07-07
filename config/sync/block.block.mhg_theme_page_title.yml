@@ -1,0 +1,20 @@
+uuid: 44f5bfac-d234-44ac-a141-8d9925331b51
+langcode: es
+status: false
+dependencies:
+  theme:
+    - mhg_theme
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: mhg_theme_page_title
+theme: mhg_theme
+region: header
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Título de la página'
+  label_display: '0'
+  provider: core
+visibility: {  }

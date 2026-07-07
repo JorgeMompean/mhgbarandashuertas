@@ -1,0 +1,22 @@
+uuid: 06503ff8-3b66-4016-af59-840af233b697
+langcode: es
+status: false
+dependencies:
+  module:
+    - help
+  theme:
+    - mhg_theme
+_core:
+  default_config_hash: VfPFqqxfkomud5CO8DUijw85QIl9GIxh_nIxLOYESxg
+id: mhg_theme_help
+theme: mhg_theme
+region: header
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Ayuda
+  label_display: '0'
+  provider: help
+visibility: {  }

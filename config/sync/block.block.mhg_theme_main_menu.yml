@@ -1,0 +1,27 @@
+uuid: 92155d37-b322-4c9f-9306-3e25864c3fd9
+langcode: es
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - mhg_theme
+_core:
+  default_config_hash: KWAiziL39uEzmOJEql_wbUP2RtqGceL3WM2CfxhMelE
+id: mhg_theme_main_menu
+theme: mhg_theme
+region: primary_menu
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Navegación principal'
+  label_display: '0'
+  provider: system
+  level: 2
+  depth: 2
+  expand_all_items: true
+visibility: {  }
